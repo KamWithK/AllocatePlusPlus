@@ -10,8 +10,8 @@ import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
 
-from Data import DataManager
-from TimeAccessor import WeekTimeAccessor
+from data import DataManager
+from time_accessor import WeekTimeAccessor
 from itertools import product
 from dash_table import DataTable
 

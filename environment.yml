@@ -1,0 +1,17 @@
+name: allocate
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  # - jupyter
+  # - jupyterlab
+  # - ipywidgets
+  - pylint
+  - rope
+  # - nodejs
+  - numpy
+  - pandas
+  - selenium
+  - geckodriver
+  - plotly
+  - dash

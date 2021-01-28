@@ -20,6 +20,7 @@ class DataManager():
             self.driver = webdriver.Firefox()
             self.data = pd.DataFrame(columns=["Unit", "Group", "Day", "Time", "Duration"])
 
+            sleep(1)
             self.setup_scraper()
             sleep(1)
             self.scrape()
@@ -27,20 +28,20 @@ class DataManager():
             self.driver.quit()
 
     def setup_scraper(self):
-        self.driver.get("https://my-timetable.monash.edu/even/student")
+        self.driver.get("https://my-timetable.monash.edu/odd/student")
 
         try:
             WebDriverWait(self.driver, 180).until(EC.presence_of_element_located((By.CLASS_NAME, "module")))
         finally:
             # Completely load the needed DOM elements
-            for code, unit in self.driver.execute_script("return data.student.student_enrolment_sem[\"Semester 2\"]").items():
+            for code, unit in self.driver.execute_script("return data.student.student_enrolment").items():
                 for group in unit["groups"]:
                     self.driver.execute_script("showGroup('" + md5((code + group).encode()).hexdigest() + "')")
 
     # Extract data
     def scrape(self):
         for unit, info in self.driver.execute_script("return data.student.student_enrolment").items():
-            if unit in self.driver.execute_script("return data.student.student_enrolment_sem[\"Semester 2\"]").keys():
+            if info["semester"] == "S1-01":
                 for group in info["groups"].values():
                     for occasion in group["activities"].values():
                         self.data = self.data.append({

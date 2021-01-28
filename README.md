@@ -12,3 +12,5 @@ Disclaimer, this tool is only for Monash University students and requires you to
 I created Allocate++ over a weekend to simplify my life, and so it is not an official Monash tool.
 It does not "decide", "suggest" or "submit" your preferences.
 Instead, Allocate++ allows you to visually get a feel for what your schedule will look like, so you can be prepared for your classes!
+
+Note: Before running, install the environment with `conda env create -f environment.yml` (or update existing install using `conda env update -f environment.yml --prune`)
